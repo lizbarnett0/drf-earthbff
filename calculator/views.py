@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from rest_framework import viewsets 
+from rest_framework import viewsets
 from .models import Quiz, Question, Response, QuizTaker, UsersResponse
 from .serializers import QuizSerializer, QuestionSerializer, ResponseSerializer, QuizTakerSerializer, UsersResponseSerializer
 
@@ -26,6 +26,6 @@ class QuizTakerViewSet(viewsets.ModelViewSet):
     serializer_class = QuizTakerSerializer
 
 
-class UsersRespnseViewSet(viewsets.ModelViewSet):
+class UsersResponseViewSet(viewsets.ModelViewSet):
     queryset = UsersResponse.objects.all()
     serializer_class = UsersResponseSerializer

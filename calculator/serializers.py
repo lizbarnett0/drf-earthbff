@@ -15,16 +15,17 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class ResponseSerializer(serializers.ModelSerializer):
-        question_label= serializers.ReadOnlyField(source='question.label', read_only=True)
+    question_label = serializers.ReadOnlyField(
+            source='question.label', read_only=True)
     class Meta:
         model = Response
         fields = ('id', 'question', 'label', 'carbon_output', 'question_label')
 
 
 class QuizTakerSerializer(serializers.ModelSerializer):
-        user_email = serializers.ReadOnlyField(
+    user_email = serializers.ReadOnlyField(
             source='users.User.email', read_only=True)
-        quiz_name = serializers.ReadOnlyField(
+    quiz_name = serializers.ReadOnlyField(
             source='quiz.name', read_only=True)
     class Meta:
         model = QuizTaker
