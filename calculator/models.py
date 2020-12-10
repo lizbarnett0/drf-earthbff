@@ -22,7 +22,7 @@ class Question(models.Model):
         return self.label
 
 
-class Answer(models.Model):
+class Response(models.Model):
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
     label = models.CharField(max_length=100)
     carbon_output = models.IntegerField(default=0)
@@ -34,7 +34,7 @@ class Answer(models.Model):
 class QuizTaker(models.Model):
     user = models.ForeignKey('users.User', on_delete=models.CASCADE)
     quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
-    score = models.IntegerField(default=0)
+    carbon_footprint = models.IntegerField(default=0)
     completed = models.BooleanField(default=False)
     date_finished = models.DateTimeField()
     timestamp = models.DateTimeField(auto_now_add=True)
@@ -43,10 +43,10 @@ class QuizTaker(models.Model):
         return self.user.email
 
 
-class UsersAnswer(models.Model):
+class UsersResponse(models.Model):
     quiz_taker = models.ForeignKey(QuizTaker, on_delete=models.CASCADE)
     question = models.ForeignKey(Question, on_delete=models.CASCADE)
-    answer = models.ForeignKey(Answer, on_delete=models.CASCADE)
+    response = models.ForeignKey(Response, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.question.label
