@@ -9,11 +9,6 @@ class Quiz(models.Model):
     roll_out = models.BooleanField(default=False)
     timestamp = models.DateTimeField(auto_now_add=True)
 
-    # @property
-    # def question_count(self):
-    # ''' Method to get num of Qs for this quiz, used in Serializer'''
-    # return self.questions.count()
-    
     def __str__(self):
         return self.name
 
@@ -27,6 +22,7 @@ class Question(models.Model):
     quiz = models.ForeignKey(Quiz, related_name='questions', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     label = models.CharField(max_length=100)
+    description = models.CharField(max_length=500)
     order = models.IntegerField(default=0)
 
     def __str__(self):

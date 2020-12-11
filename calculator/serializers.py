@@ -4,7 +4,6 @@ from .models import Quiz, Question, Response, QuizTaker, UsersResponse, Category
 
 class QuizSerializer(serializers.ModelSerializer):
     
-    
     class Meta:
         model = Quiz
         fields = ('id', 'name', 'description', 'slug', 'roll_out', 'timestamp')
@@ -31,7 +30,7 @@ class QuestionSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Question
-        fields = ('id', 'quiz', 'label', 'order', 'category', 'responses')
+        fields = ('id', 'quiz', 'label', 'description','order', 'category', 'responses')
 
 
 class QuizTakerSerializer(serializers.ModelSerializer):
