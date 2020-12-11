@@ -24,7 +24,7 @@ class Category(models.Model):
         return self.name
 
 class Question(models.Model):
-    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    quiz = models.ForeignKey(Quiz, related_name='questions', on_delete=models.CASCADE)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     label = models.CharField(max_length=100)
     order = models.IntegerField(default=0)
@@ -34,7 +34,7 @@ class Question(models.Model):
 
 
 class Response(models.Model):
-    question = models.ForeignKey(Question, on_delete=models.CASCADE)
+    question = models.ForeignKey(Question, related_name='responses', on_delete=models.CASCADE)
     label = models.CharField(max_length=100)
     carbon_output = models.IntegerField(default=0)
 

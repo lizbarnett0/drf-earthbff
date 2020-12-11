@@ -3,6 +3,8 @@ from .models import Quiz, Question, Response, QuizTaker, UsersResponse, Category
 
 
 class QuizSerializer(serializers.ModelSerializer):
+    
+    
     class Meta:
         model = Quiz
         fields = ('id', 'name', 'description', 'slug', 'roll_out', 'timestamp')
@@ -13,13 +15,6 @@ class CategorySerializer(serializers.ModelSerializer):
         model = Category
         fields = ('id', 'name')
 
-
-class QuestionSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Question
-        fields = ('id', 'quiz', 'label', 'order', 'category')
-
-
 class ResponseSerializer(serializers.ModelSerializer):
     question_label = serializers.ReadOnlyField(
         source='question.label', read_only=True)
@@ -27,6 +22,16 @@ class ResponseSerializer(serializers.ModelSerializer):
     class Meta:
         model = Response
         fields = ('id', 'question', 'label', 'carbon_output', 'question_label')
+
+class QuestionSerializer(serializers.ModelSerializer):
+    responses = ResponseSerializer(
+        read_only=True,
+        many=True
+    )
+    
+    class Meta:
+        model = Question
+        fields = ('id', 'quiz', 'label', 'order', 'category', 'responses')
 
 
 class QuizTakerSerializer(serializers.ModelSerializer):
