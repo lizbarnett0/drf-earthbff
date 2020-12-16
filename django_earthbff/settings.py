@@ -1,4 +1,3 @@
-
 import os
 import dj_database_url
 from pathlib import Path
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
 
     'users',
     'calculator',
+    'community',
 ]
 
 MIDDLEWARE = [
