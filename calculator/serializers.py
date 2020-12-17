@@ -28,6 +28,7 @@ class QuestionSerializer(serializers.ModelSerializer):
 
 
 class ResultsSerializer(serializers.ModelSerializer):
+    many = True
     class Meta:
         model = Results
         fields = ('id', 'carbon_output', 'owner', 'timestamp')
